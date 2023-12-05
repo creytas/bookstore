@@ -7,7 +7,7 @@ import Ratings from "./ratings";
 const Card = ({ image, title, price, rating }) => {
   const handle = () => console.log("add to cart clicked");
   return (
-    <div className="rounded-md border border-gray-300 p-2 my-4 cursor-pointer">
+    <div className="rounded-md border border-gray-300 p-2 my-4 cursor-pointer hover:shadow-md hover:shadow-gray-900">
       <div className="w-full h-40 mb-3 relative">
         <Image src={image ? image : "/assets/bookstore.png"} alt={title} fill className="object-cover" />
       </div>

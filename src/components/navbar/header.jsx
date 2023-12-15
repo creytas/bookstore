@@ -1,12 +1,12 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-  faBell
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faBell } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-const Header = () => {
+const Header = ({ filter, setIsFiltered, }) => {
+  const [searchKeyword, setSearchKeyword] = useState("");
   return (
     <header className="grid grid-cols-4 py-2 px-8 bg-gray-100 text-black">
       <Link href="/" className="col-span-1 grid grid-rows-1">
@@ -28,8 +28,18 @@ const Header = () => {
             <input
               type="search"
               className="border border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-600 p-1"
+              onChange={(e) => {
+                setSearchKeyword(e.target.value);
+                setIsFiltered(e.target.value.length > 0);
+              }}
             />
-            <button className="border border-orange-500 bg-orange-500 text-gray-100 w-24 p-1 hover:bg-opacity-80">
+            <button
+              className="border border-orange-500 bg-orange-500 text-gray-100 w-24 p-1 hover:bg-opacity-80"
+              onClick={() =>{
+                  searchKeyword.length > 0 ? filter(searchKeyword) : console.log("nothing")
+                }
+              }
+            >
               Search
             </button>
           </div>

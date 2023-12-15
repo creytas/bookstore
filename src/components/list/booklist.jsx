@@ -8,10 +8,15 @@ const Booklist = ({ titleIcon, title, data }) => {
         <FontAwesomeIcon icon={titleIcon} className=" text-gray-900" />
         <span className={`text-orange-600 font-black uppercase`}>{title}</span>
       </h2>
+      {/* flex */}
       <div className="grid grid-cols-6 gap-3 px-4 bg-white">
-        {data.map((book, index) => {
-          return <Card key={index} data={book} />;
-        })}
+        {data ? (
+          data.map((book, index) => {
+            return <Card key={index} data={book} />;
+          })
+        ) : (
+          <div className="border border-red-700">Book not found</div>
+        )}
       </div>
     </section>
   );

@@ -4,12 +4,13 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faLadderWater } from "@fortawesome/free-solid-svg-icons";
 import Ratings from "./ratings";
-import Modal from "./modal";
 
-const Card = ({ data }) => {
+const Card = ({ data, setIsOpened, setSelectedBook }) => {
   const { image, title, price, rating } = data;
-  const [isOpened, setIsOpened] = useState(false);
-  const handle = () => setIsOpened(!isOpened);
+  const handle = () => {
+    setSelectedBook(data);
+    setIsOpened(true);
+  };
 
   return (
     <div>
@@ -35,7 +36,6 @@ const Card = ({ data }) => {
           <span className="text-gray-200">Add to the cart</span>
         </button>
       </div>
-      <Modal data={data} isOpened={isOpened} />
     </div>
   );
 };

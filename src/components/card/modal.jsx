@@ -13,7 +13,10 @@ export default function Modal({ closeModal, data }) {
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
               <h3 className="text-3xl font-semibold">
                 <span>{title}</span>
-                <Ratings ratingValue={rating ? rating : 0} readOnly={true} />
+                <div className="flex space-x-4">
+                  <Ratings ratingValue={rating ? rating : 0} readOnly={true} />
+                  <span className="text-gray-500 text-xl">{`CDF ${price}`}</span>
+                </div>
               </h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -33,12 +36,9 @@ export default function Modal({ closeModal, data }) {
                   className="absolute object-cover"
                 />
               </div>
-              <div className="w-[70%] pl-3 text-blueGray-500 text-lg leading-relaxed">
-                <h3 className="">{`Price : CDF ${price}`}</h3>
-                <p className="my-4">
-                  {description ? description : "No Description"}
-                </p>
-              </div>
+              <p className="w-[70%] pl-3 text-blueGray-500 text-lg leading-relaxed">
+                {description ? description : "No Description"}
+              </p>
             </div>
             <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
               <button
@@ -51,7 +51,10 @@ export default function Modal({ closeModal, data }) {
               <button
                 className="border border-gray-900 bg-gray-900 text-white p-2 my-4 hover:bg-opacity-80"
                 type="button"
-                onClick={() => console.log(`${title} added to your cart`)}
+                onClick={() => {
+                  closeModal();
+                  alert(`${title} added to your cart`);
+                }}
               >
                 <FontAwesomeIcon
                   icon={faCartPlus}

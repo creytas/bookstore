@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faBell } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-const Header = ({ filter, setIsFiltered, }) => {
+const Header = ({ cartItems, filter, setIsFiltered }) => {
   const [searchKeyword, setSearchKeyword] = useState("");
   return (
     <header className="grid grid-cols-4 py-2 px-8 bg-gray-100 text-black">
@@ -35,20 +35,26 @@ const Header = ({ filter, setIsFiltered, }) => {
             />
             <button
               className="border border-orange-500 bg-orange-500 text-gray-100 w-24 p-1 hover:bg-opacity-80"
-              onClick={() =>{
-                  searchKeyword.length > 0 ? filter(searchKeyword) : console.log("nothing")
-                }
-              }
+              onClick={() => {
+                searchKeyword.length > 0
+                  ? filter(searchKeyword)
+                  : console.log("nothing");
+              }}
             >
               Search
             </button>
           </div>
           <div className="w-1/2 flex justify-end items-center space-x-6">
-            <Link href="/cart" className="flex items-center">
+            <Link href="/cart" className="flex items-center relative">
               <FontAwesomeIcon
                 icon={faCartShopping}
                 className="text-2xl text-gray-900"
               />
+              {cartItems > 0 && (
+                <span className="w-[15px] flex items-center justify-center absolute right-0 bg-orange-500 bg-opacity-80 p-0.5 rounded-full text-white text-xs font-black">
+                  {cartItems}
+                </span>
+              )}
             </Link>
             <Link href="/cart" className="flex items-center">
               <FontAwesomeIcon

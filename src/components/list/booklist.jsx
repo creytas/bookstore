@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "@/components/card/modal";
 import Card from "@/components/card/card";
 
-const Booklist = ({ titleIcon, title, data }) => {
+const Booklist = ({ titleIcon, title, data, addToCart }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
 
@@ -35,7 +35,7 @@ const Booklist = ({ titleIcon, title, data }) => {
           <div className="border border-red-700">Book not found</div>
         )}
       </div>
-      {isModalOpened && <Modal data={selectedBook} closeModal={closeModal} />}
+      {isModalOpened && <Modal data={selectedBook} addToCart={addToCart} closeModal={closeModal} />}
     </section>
   );
 };

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faLadderWater } from "@fortawesome/free-solid-svg-icons";
 import Ratings from "./ratings";
 
-export default function Modal({ closeModal, data }) {
+export default function Modal({ closeModal, data, addToCart }) {
   const { image, title, description, price, rating } = data;
   return (
     <>
@@ -52,6 +52,7 @@ export default function Modal({ closeModal, data }) {
                 className="border border-gray-900 bg-gray-900 text-white p-2 my-4 hover:bg-opacity-80"
                 type="button"
                 onClick={() => {
+                  addToCart();
                   closeModal();
                   alert(`${title} added to your cart`);
                 }}

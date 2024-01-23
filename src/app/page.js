@@ -9,6 +9,7 @@ import { books } from "@/lib/data";
 export default function Home() {
   const [data, setData] = useState(books);
   const [filtered, setFiltered] = useState(books);
+  const [cartItems, setCartItems] = useState(0);
   // const [selectedBook, setSelectedBook] = useState({
   //   image: "",
   //   title: "",
@@ -17,7 +18,7 @@ export default function Home() {
   //   rating: null,
   // });
   const [isFiltered, setIsFiltered] = useState(false);
-//  const [isOpened, setIsOpened] = useState(false);
+  //  const [isOpened, setIsOpened] = useState(false);
 
   const filterResult = (input) => {
     let filteredData = data.flat().filter((item) => {
@@ -31,14 +32,20 @@ export default function Home() {
   useEffect(() => {
     setData(data);
   }, []);
+  const addToCart = () => setCartItems(cartItems + 1);
 
   return (
     <main className="w-screen min-h-screen relative">
-      <Header filter={filterResult} setIsFiltered={setIsFiltered} />
+      <Header
+        cartItems={cartItems}
+        filter={filterResult}
+        setIsFiltered={setIsFiltered}
+      />
       <Booklist
         titleIcon={faBookmark}
         title="best-seller"
         data={isFiltered ? filtered : data}
+        addToCart={addToCart}
         // setIsOpened={setIsOpened}
         // setSelectedBook={setSelectedBook}
       />
